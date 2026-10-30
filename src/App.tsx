@@ -20,10 +20,10 @@ const makeId=()=>Math.random().toString(36).slice(2,9);
 const weekDate=(day:number)=>{const date=new Date();date.setDate(date.getDate()-((date.getDay()+6)%7)+day);return date.getDate()};
 
 function App(){
- const [plans,setPlans]=useState<Plan[]>(()=>{try{return JSON.parse(localStorage.getItem('grade-de-disciplinas-plans')||localStorage.getItem('grade-studio-plans')||'null')||starter}catch{return starter}});
+ const [plans,setPlans]=useState<Plan[]>(()=>{try{return JSON.parse(localStorage.getItem('course-schedule-plans')||localStorage.getItem('grade-de-disciplinas-plans')||localStorage.getItem('grade-studio-plans')||'null')||starter}catch{return starter}});
  const [active,setActive]=useState('fall');const [query,setQuery]=useState('');const [modal,setModal]=useState(false);const [editing,setEditing]=useState<Course|null>(null);const [toast,setToast]=useState('');
  const plan=plans.find(p=>p.id===active)??plans[0];const courses=plan?.courses??[];
- useEffect(()=>{localStorage.setItem('grade-de-disciplinas-plans',JSON.stringify(plans))},[plans]);
+ useEffect(()=>{localStorage.setItem('course-schedule-plans',JSON.stringify(plans))},[plans]);
  const conflicts=useMemo(()=>{const result:{a:Course;b:Course;m:Meeting}[]=[];courses.forEach((a,i)=>courses.slice(i+1).forEach(b=>a.meetings.forEach(x=>b.meetings.forEach(y=>{if(x.day===y.day&&mins(x.start)<mins(y.end)&&mins(y.start)<mins(x.end))result.push({a,b,m:x})}))));return result},[courses]);
  const visible=courses.filter(c=>`${c.name} ${c.code} ${c.teacher}`.toLowerCase().includes(query.toLowerCase()));
  const saveCourse=(c:Course)=>{const updated=editing?courses.map(x=>x.id===c.id?c:x):[...courses,c];setPlans(plans.map(p=>p.id===plan.id?{...p,courses:updated}:p));setModal(false);setEditing(null);setToast(editing?'Course updated':'Course added');setTimeout(()=>setToast(''),2600)};

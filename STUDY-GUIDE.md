@@ -50,7 +50,7 @@ When a setter such as `setPlans` changes state, React renders the component agai
 
 ## 5. Persistence in the browser
 
-On startup, the initializer for `plans` reads `grade-de-disciplinas-plans`. It also checks the old `grade-studio-plans` key as a migration fallback. If no valid saved data exists, it uses `starter`. An effect serializes plans as JSON and writes the new key.
+On startup, the initializer for `plans` reads `course-schedule-plans`. It also checks the previous `grade-de-disciplinas-plans` and `grade-studio-plans` keys as migration fallbacks. If no valid saved data exists, it uses `starter`. An effect serializes plans as JSON and writes the new key.
 
 Local storage only stores strings, so JSON converts objects into text and `JSON.parse` recreates them when the page loads. Clearing site data in the browser removes these plans. There is no remote backup or device synchronization.
 
