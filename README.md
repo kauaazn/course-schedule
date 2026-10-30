@@ -1,43 +1,40 @@
-# Grade de Disciplinas
+# Course Schedule
 
-Organize suas disciplinas, enxergue a semana de uma vez e compare opções de grade antes de fechar o semestre. O projeto funciona no navegador e guarda os dados localmente.
+Course Schedule is a responsive React and TypeScript app for organizing university classes, comparing schedule options, and spotting time conflicts. It runs entirely in the browser and stores schedules on the current device.
 
-## O que dá para fazer
+## Features
 
-- Criar mais de uma versão da grade e duplicar uma versão para comparar cenários.
-- Cadastrar disciplinas com vários encontros, professor, sala e cor.
-- Editar e remover disciplinas; buscar pelo nome, código ou docente.
-- Visualizar os encontros em uma grade semanal responsiva.
-- Identificar encontros sobrepostos. Horários adjacentes, como 9h–10h e 10h–11h, não contam como conflito.
-- Exportar os horários para CSV.
-- Continuar de onde parou: as versões são persistidas no `localStorage`.
+- Create, rename, duplicate, and compare schedule plans.
+- Add courses with instructors, locations, colors, and multiple weekly meetings.
+- Search courses by name, code, or instructor.
+- View a weekly calendar and identify overlapping meetings. Back-to-back classes are allowed.
+- Export meetings to CSV.
+- Keep plans between visits with browser local storage.
 
-## Executar localmente
+## Run locally
 
-Requer Node.js 20.19 ou superior.
+Requires Node.js 20.19 or later.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Abra o endereço mostrado pelo Vite (normalmente `http://localhost:5173`). Para gerar a versão de produção: `npm run build`.
+Open the URL printed by Vite, usually `http://localhost:5173`. Create a production build with `npm run build`.
 
-## Como estudar o código
+## How it works
 
-Para acompanhar o projeto como uma aula prática, veja também o [Guia de estudo](GUIA-DE-ESTUDO.md).
+- `src/main.tsx` mounts the React application.
+- `src/App.tsx` defines the data model, application state, schedule rules, and interface.
+- `src/style.css` contains the visual design and responsive layout.
+- `localStorage` stores schedule plans as JSON on the current browser.
 
-1. **Entrada do React:** `src/main.tsx` monta o componente principal e carrega os estilos.
-2. **Estado e persistência:** `src/App.tsx` mantém as versões da grade em estado React. Um efeito sincroniza as alterações com `localStorage`; ao abrir o app, o valor salvo é carregado e, na primeira visita, uma grade de demonstração dá contexto à interface.
-3. **Modelo:** `Plan` representa uma versão; `Course` tem informações da matéria e uma lista de `Meeting`; cada encontro associa um dia, início, fim e local.
-4. **Conflitos:** os pares de disciplinas e encontros são comparados. Há conflito quando o dia coincide e `início A < fim B && início B < fim A`. Essa comparação estrita permite aulas consecutivas sem falso positivo.
-5. **Formulário:** `CourseModal` mantém os campos enquanto o formulário está aberto e valida horários antes de chamar `onSave`. O formulário serve tanto para criar como para editar.
-6. **Renderização:** a lista de encontros é convertida em blocos posicionados dentro do calendário. A mesma fonte de dados alimenta o resumo e a lista de disciplinas.
+See [Study Guide](STUDY-GUIDE.md) for a technical walkthrough and exercises.
 
-## Decisões e próximos passos
-
-Esta primeira versão é client-side, sem conta ou sincronização entre dispositivos. `localStorage` é apropriado para uma ferramenta pessoal de demonstração, mas não para dados que precisem de backup ou compartilhamento. Uma evolução natural seria adicionar testes unitários para a regra de conflitos, importação/exportação JSON e uma API para sincronização.
-
-## Tecnologias
+## Stack
 
 React · TypeScript · Vite · CSS · Lucide · Web Storage API
+
+## Current scope
+
+This is a client-side portfolio project. It has no account, remote backup, or cross-device synchronization. A natural next step would be unit tests for the conflict rule, JSON import/export, and an API for synchronization.
