@@ -25,6 +25,8 @@ Abra o endereço mostrado pelo Vite (normalmente `http://localhost:5173`). Para 
 
 ## Como estudar o código
 
+Para acompanhar o projeto como uma aula prática, veja também o [Guia de estudo](GUIA-DE-ESTUDO.md).
+
 1. **Entrada do React:** `src/main.tsx` monta o componente principal e carrega os estilos.
 2. **Estado e persistência:** `src/App.tsx` mantém as versões da grade em estado React. Um efeito sincroniza as alterações com `localStorage`; ao abrir o app, o valor salvo é carregado e, na primeira visita, uma grade de demonstração dá contexto à interface.
 3. **Modelo:** `Plan` representa uma versão; `Course` tem informações da matéria e uma lista de `Meeting`; cada encontro associa um dia, início, fim e local.
