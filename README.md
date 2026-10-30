@@ -1,4 +1,4 @@
-# Grade Studio
+# Grade de Disciplinas
 
 Organize suas disciplinas, enxergue a semana de uma vez e compare opções de grade antes de fechar o semestre. O projeto funciona no navegador e guarda os dados localmente.
 
