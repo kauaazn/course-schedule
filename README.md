@@ -14,7 +14,7 @@ Organize suas disciplinas, enxergue a semana de uma vez e compare opções de gr
 
 ## Executar localmente
 
-Requer Node.js 20 ou superior.
+Requer Node.js 20.19 ou superior.
 
 ```bash
 npm install
